@@ -1,0 +1,905 @@
+﻿<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اليوم الوطني السعودي</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("https://uploads.onecompiler.io/44mb58ghz/453hv5n7m/ChatGPT%20Image%2017%20%C3%98%C2%B3%C3%98%C2%A8%C3%98%C2%AA%C3%99%C2%85%C3%98%C2%A8%C3%98%C2%B1%202026%C3%98%C2%8C%2007_45_33%20%C3%99%C2%85.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Tahoma, Arial, sans-serif;
+            text-align: right;
+            margin: 0;
+            padding: 25px;
+            min-height: 100vh;
+        }
+        .language-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, #14532d, #198754);
+            border: 1px solid #4ade80;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(20, 83, 45, 0.35);
+            direction: ltr;
+        }
+
+            .language-switch span {
+                color: #ffffff;
+                font-size: 23px;
+                line-height: 1;
+            }
+
+            .language-switch select {
+                appearance: none;
+                -webkit-appearance: none;
+                background: transparent;
+                color: #ffffff;
+                border: none;
+                outline: none;
+                font-size: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                width: 55px;
+            }
+
+                .language-switch select option {
+                    background: #14532d;
+                    color: white;
+                }
+
+        .container {
+            background: white;
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px #d5d5d5;
+        }
+
+        h1 {
+            color: #176b4d;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #176b4d;
+            font-size: 21px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #444;
+        }
+
+        a, button {
+            display: inline-block;
+            background: #176b4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+            a:hover, button:hover {
+                background: #0f513a;
+            }
+
+        .info-link {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .extra-image {
+            display: block;
+            width: 100px;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 15px;
+        }
+
+        input {
+            padding: 10px;
+            width: min(100%, 320px);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        #countdown {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #176b4d;
+            background: #f1f8f3;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        iframe, video {
+            display: block;
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .celebration-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 20px 0;
+        }
+
+        .celebration-card {
+            background: #f8fbf9;
+            padding: 22px 18px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 3px 12px #d5e5da;
+            min-height: 220px;
+            transition: .3s;
+        }
+
+            .celebration-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .celebration-icon {
+            font-size: 42px;
+        }
+
+        .celebration-card h3 {
+            color: #075b3b;
+            font-size: 19px;
+        }
+
+        .celebration-card p {
+            font-size: 14px;
+        }
+
+        .map-box {
+            width: 100%;
+            height: 300px;
+            overflow: auto;
+            border: 2px solid #176b4d;
+            border-radius: 15px;
+            background: #f1f8f3;
+        }
+
+        .map-image {
+            width: 800px;
+            height: auto;
+            max-width: none;
+        }
+
+        #gameArea {
+            position: relative;
+            height: 300px;
+            background: #f1f8f3;
+            border-radius: 15px;
+            margin-top: 15px;
+            overflow: hidden;
+            border: 2px solid #176b4d;
+        }
+
+        #flag {
+            position: absolute;
+            display: none;
+            width: 80px;
+            height: 50px;
+            background: #006c35;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+            #flag::before {
+                content: "⚔";
+                color: white;
+                font-size: 16px;
+                position: absolute;
+                right: 10px;
+                bottom: 8px;
+            }
+
+            #flag::after {
+                content: "السعودية";
+                color: white;
+                font-size: 8px;
+                font-weight: bold;
+                position: absolute;
+                right: 17px;
+                top: 15px;
+            }
+
+        .celebration {
+            position: fixed;
+            font-size: 35px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+
+            from {
+                transform: translateY(-50px);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 12px;
+                background-attachment: scroll;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .celebration-container {
+                grid-template-columns: 1fr;
+            }
+
+            .celebration-card {
+                min-height: auto;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="language-switch" dir="ltr">
+
+        <span>🌐</span>
+
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+
+            <option value="ar">AR ▼</option>
+
+            <option value="en">EN ▼</option>
+
+        </select>
+
+    </div>
+
+    <div class="container">
+
+        <img src="uqu.jpg"
+             alt="شعار جامعة أم القرى"
+             class="extra-image">
+
+        <h1 data-ar="اليوم الوطني السعودي"
+            data-en="Saudi National Day">
+
+            اليوم الوطني السعودي
+
+        </h1>
+
+        <h2 data-ar="اليوم الوطني السعودي"
+            data-en="Saudi National Day">
+
+            اليوم الوطني السعودي
+
+        </h2>
+
+        <p data-ar="يُعد اليوم الوطني السعودي مناسبة وطنية مهمة يحتفل بها أبناء المملكة العربية السعودية في 23 سبتمبر من كل عام، تخليدًا لذكرى توحيد المملكة على يد الملك عبدالعزيز بن عبدالرحمن آل سعود عام 1932م. ويجسد هذا اليوم مشاعر الفخر والاعتزاز بتاريخ المملكة وإنجازاتها، ويعكس قيم الوحدة والانتماء والوفاء للوطن."
+           data-en="Saudi National Day is an important national occasion celebrated on September 23 every year. It commemorates the unification of the Kingdom by King Abdulaziz bin Abdulrahman Al Saud in 1932. The day reflects pride in the Kingdom's history and achievements, and celebrates unity, belonging, and loyalty to the country.">
+
+            يُعد اليوم الوطني السعودي مناسبة وطنية مهمة يحتفل بها أبناء المملكة العربية السعودية في 23 سبتمبر من كل عام، تخليدًا لذكرى توحيد المملكة على يد الملك عبدالعزيز بن عبدالرحمن آل سعود عام 1932م. ويجسد هذا اليوم مشاعر الفخر والاعتزاز بتاريخ المملكة وإنجازاتها، ويعكس قيم الوحدة والانتماء والوفاء للوطن.
+
+        </p>
+
+        <h2 data-ar="العد التنازلي لليوم الوطني"
+            data-en="Countdown to Saudi National Day">
+
+            العد التنازلي لليوم الوطني
+
+        </h2>
+
+        <p id="countdown">جاري حساب الوقت...</p>
+
+        <h2 data-ar="ملوك المملكة العربية السعودية"
+            data-en="Kings of Saudi Arabia">
+
+            ملوك المملكة العربية السعودية
+
+        </h2>
+
+        <iframe src="Kings.jpg"
+                title="ملوك المملكة العربية السعودية">
+        </iframe>
+
+        <h2 data-ar="معلومات عن المملكة العربية السعودية"
+            data-en="About Saudi Arabia">
+
+            معلومات عن المملكة العربية السعودية
+
+        </h2>
+
+        <a class="info-link"
+           href="https://ar.wikipedia.org/wiki/عبد_العزيز_آل_سعود"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-ar="من هو مؤسس المملكة العربية السعودية؟"
+           data-en="Who founded Saudi Arabia?">
+
+            من هو مؤسس المملكة العربية السعودية؟
+
+        </a>
+
+        <a class="info-link"
+           href="https://ar.wikipedia.org/wiki/توحيد_السعودية"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-ar="كيف تم توحيد المملكة العربية السعودية؟"
+           data-en="How was Saudi Arabia unified?">
+
+            كيف تم توحيد المملكة العربية السعودية؟
+
+        </a>
+
+        <a class="info-link"
+           href="https://ar.wikipedia.org/wiki/الرياض"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-ar="ما اسم عاصمة المملكة العربية السعودية؟"
+           data-en="What is the capital of Saudi Arabia?">
+
+            ما اسم عاصمة المملكة العربية السعودية؟
+
+        </a>
+
+        <a class="info-link"
+           href="https://ar.wikipedia.org/wiki/شعار_السعودية"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-ar="ما هو شعار المملكة العربية السعودية؟"
+           data-en="What is the emblem of Saudi Arabia?">
+
+            ما هو شعار المملكة العربية السعودية؟
+
+        </a>
+
+        <h2 data-ar="كلمات وأقوال الملوك الخالدة"
+            data-en="Memorable Words and Quotes">
+
+            كلمات وأقوال الملوك الخالدة
+
+        </h2>
+
+        <video controls>
+
+            <source src="videos.mp4" type="video/mp4">
+
+        </video>
+
+        <h2 data-ar="خريطة المملكة العربية السعودية"
+            data-en="Map of Saudi Arabia">
+
+            خريطة المملكة العربية السعودية
+
+        </h2>
+
+        <div class="map-box">
+
+            <img src="Map.jpg"
+                 alt="خريطة المملكة العربية السعودية"
+                 class="map-image">
+
+        </div>
+
+        <section id="celebrations">
+
+            <h2 data-ar="مظاهر الاحتفال باليوم الوطني"
+                data-en="Saudi National Day Celebrations">
+
+                مظاهر الاحتفال باليوم الوطني
+
+            </h2>
+
+            <p data-ar="تتنوع مظاهر الاحتفال باليوم الوطني السعودي، وتشمل فعاليات وأنشطة تعكس الاعتزاز بالوطن وتاريخه وثقافته."
+               data-en="Saudi National Day celebrations include events and activities that express pride in the country, its history, and culture.">
+
+                تتنوع مظاهر الاحتفال باليوم الوطني السعودي، وتشمل فعاليات وأنشطة تعكس الاعتزاز بالوطن وتاريخه وثقافته.
+
+            </p>
+
+            <div class="celebration-container">
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">🇸🇦</div>
+
+                    <h3 data-ar="رفع الأعلام" data-en="Raising Flags">رفع الأعلام</h3>
+
+                    <p data-ar="تزيين الشوارع والمنازل بالأعلام السعودية تعبيرًا عن الفخر بالوطن."
+                       data-en="Streets and homes are decorated with Saudi flags to express national pride.">
+
+                        تزيين الشوارع والمنازل بالأعلام السعودية تعبيرًا عن الفخر بالوطن.
+
+                    </p>
+
+                </div>
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">🎆</div>
+
+                    <h3 data-ar="الألعاب النارية" data-en="Fireworks">الألعاب النارية</h3>
+
+                    <p data-ar="تقام عروض الألعاب النارية في عدد من المدن."
+                       data-en="Fireworks displays take place in several cities.">
+
+                        تقام عروض الألعاب النارية في عدد من المدن.
+
+                    </p>
+
+                </div>
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">🎤</div>
+
+                    <h3 data-ar="الحفلات والعروض" data-en="Concerts and Shows">الحفلات والعروض</h3>
+
+                    <p data-ar="تقام الحفلات والعروض الفنية والترفيهية."
+                       data-en="Concerts, artistic performances, and entertainment shows are held.">
+
+                        تقام الحفلات والعروض الفنية والترفيهية.
+
+                    </p>
+
+                </div>
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">🎭</div>
+
+                    <h3 data-ar="الفعاليات الثقافية" data-en="Cultural Events">الفعاليات الثقافية</h3>
+
+                    <p data-ar="فعاليات تعرف بالتراث والثقافة والفنون السعودية."
+                       data-en="Events showcase Saudi heritage, culture, and arts.">
+
+                        فعاليات تعرف بالتراث والثقافة والفنون السعودية.
+
+                    </p>
+
+                </div>
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">🏙️</div>
+
+                    <h3 data-ar="تزيين المدن" data-en="Decorated Cities">تزيين المدن</h3>
+
+                    <p data-ar="تتزين الشوارع والمباني بالإضاءات والديكورات الوطنية."
+                       data-en="Streets and buildings are decorated with lights and national decorations.">
+
+                        تتزين الشوارع والمباني بالإضاءات والديكورات الوطنية.
+
+                    </p>
+
+                </div>
+
+                <div class="celebration-card">
+
+                    <div class="celebration-icon">👨‍👩‍👧‍👦</div>
+
+                    <h3 data-ar="الاحتفال مع العائلة" data-en="Family Celebrations">الاحتفال مع العائلة</h3>
+
+                    <p data-ar="يجتمع الأهل والأصدقاء للمشاركة في الفعاليات."
+                       data-en="Families and friends gather to enjoy the celebrations.">
+
+                        يجتمع الأهل والأصدقاء للمشاركة في الفعاليات.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <h2 data-ar="أنشطة اليوم الوطني السعودي"
+            data-en="Saudi National Day Activities">
+
+            أنشطة اليوم الوطني السعودي
+
+        </h2>
+
+        <button onclick="showWelcome()"
+                data-ar="عبارات اليوم الوطني"
+                data-en="National Day Messages">
+
+            عبارات اليوم الوطني
+
+        </button>
+
+        <button onclick="changeTheme()"
+                data-ar="الثيم الوطني"
+                data-en="National Theme">
+
+            الثيم الوطني
+
+        </button>
+
+        <h2 data-ar="اختبار اليوم الوطني"
+            data-en="National Day Quiz">
+
+            اختبار اليوم الوطني
+
+        </h2>
+
+        <p data-ar="أين تقع السعودية؟"
+           data-en="Where is Saudi Arabia located?">
+
+            أين تقع السعودية؟
+
+        </p>
+
+        <input type="text"
+               id="answer"
+               placeholder="اكتب إجابتك"
+               data-placeholder-ar="اكتب إجابتك"
+               data-placeholder-en="Type your answer">
+
+        <br>
+
+        <button onclick="checkAnswer()"
+                data-ar="تحقق من الإجابة"
+                data-en="Check Answer">
+
+            تحقق من الإجابة
+
+        </button>
+
+        <h2 data-ar="لعبة العلم السعودي"
+            data-en="Saudi Flag Game">
+
+            لعبة العلم السعودي
+
+        </h2>
+
+        <p data-ar="اضغط على العلم السعودي بأسرع ما يمكنك!"
+           data-en="Click the Saudi flag as quickly as you can!">
+
+            اضغط على العلم السعودي بأسرع ما يمكنك!
+
+        </p>
+
+        <p>
+
+            <span data-ar="النتيجة:" data-en="Score:">النتيجة:</span>
+
+            <span id="score">0</span>
+
+        </p>
+
+        <button onclick="startGame()"
+                data-ar="ابدأ اللعبة"
+                data-en="Start Game">
+
+            ابدأ اللعبة
+
+        </button>
+
+        <div id="gameArea">
+
+            <div id="flag" onclick="clickFlag()"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let currentLanguage = "ar";
+
+        let score = 0;
+
+        let gameTimer;
+
+        function changeLanguage(language) {
+
+        currentLanguage = language;
+
+        document.documentElement.lang = language;
+
+        document.documentElement.dir =
+
+        language === "ar" ? "rtl" : "ltr";
+
+        document.getElementById("languageSelect").value = language;
+
+        document.querySelectorAll("[data-ar][data-en]").forEach(function(element) {
+
+        element.textContent = element.getAttribute("data-" + language);
+
+        });
+
+        const answerInput = document.getElementById("answer");
+
+        answerInput.placeholder =
+
+        answerInput.getAttribute("data-placeholder-" + language);
+
+        document.getElementById("flag").style.setProperty(
+
+        "--flag-language",
+
+        language === "ar" ? '"السعودية"' : '"SAUDI"'
+
+        );
+
+        document.getElementById("flag").style.direction =
+
+        language === "ar" ? "rtl" : "ltr";
+
+        countdown();
+
+        }
+
+        function showWelcome() {
+
+        if (currentLanguage === "ar") {
+
+        alert("في حب السعودية، لنا حكاية");
+
+        alert("فخر يمتد عبر الأجيال");
+
+        alert("كل تفاصيلنا.. السعودية");
+
+        } else {
+
+        alert("Saudi Arabia: a story of love.");
+
+        alert("Pride that spans generations.");
+
+        alert("Saudi Arabia is part of everything we are.");
+
+        }
+
+        fireworks();
+
+        }
+
+        function changeTheme() {
+
+        document.body.style.backgroundImage = 'url("saudi.jpg")';
+
+        document.body.style.backgroundSize = "cover";
+
+        document.body.style.backgroundPosition = "center";
+
+        document.body.style.backgroundRepeat = "no-repeat";
+
+        }
+
+        function checkAnswer() {
+
+        const answer = document.getElementById("answer").value.trim().toLowerCase();
+
+        if (answer === "") {
+
+        alert(currentLanguage === "ar"
+
+        ? "فضلاً، اكتبي إجابتك أولاً."
+
+        : "Please enter your answer first.");
+
+        return;
+
+        }
+
+        const normalized = answer
+
+        .normalize("NFD")
+
+        .replace(/[\u0300-\u036f\u064B-\u065F\u0670]/g, "")
+
+        .replace(/[أإآ]/g, "ا")
+
+        .replace(/ى/g, "ي")
+
+        .replace(/[.,،!؟?]/g, " ")
+
+        .replace(/\s+/g, " ")
+
+        .trim();
+
+        const correct =
+
+        /اسيا|اسيويه|قاره اسيا|جنوب غرب/.test(normalized) ||
+
+        /\b(asia|asian|southwest|south west)\b/.test(normalized);
+
+        if (correct) {
+
+        alert(currentLanguage === "ar"
+
+        ? "إجابة صحيحة! تقع السعودية في جنوب غرب قارة آسيا 🇸🇦"
+
+        : "Correct! Saudi Arabia is located in southwestern Asia. 🇸🇦");
+
+        } else {
+
+        alert(currentLanguage === "ar"
+
+        ? "الإجابة غير دقيقة. تلميح: ابحثي عن القارة التي تقع فيها السعودية."
+
+        : "That answer may not be correct. Hint: think about the continent where Saudi Arabia is located.");
+
+        }
+
+        }
+
+        function fireworks() {
+
+        const symbols = ["🎉", "🎊", "✨", "🎆"];
+
+        for (let i = 0; i < 30; i++) {
+
+        const celebration = document.createElement("div");
+
+        celebration.textContent =
+
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+        celebration.className = "celebration";
+
+        celebration.style.left = Math.random() * 100 + "vw";
+
+        celebration.style.top = Math.random() * 80 + "vh";
+
+        document.body.appendChild(celebration);
+
+        setTimeout(function() {
+
+        celebration.remove();
+
+        }, 3000);
+
+        }
+
+        }
+
+        function countdown() {
+
+        const today = new Date();
+
+        let nationalDay = new Date(today.getFullYear(), 8, 23);
+
+        if (today >= nationalDay) {
+
+        nationalDay = new Date(today.getFullYear() + 1, 8, 23);
+
+        }
+
+        const difference = nationalDay - today;
+
+        const days = Math.floor(difference / 86400000);
+
+        const hours = Math.floor((difference / 3600000) % 24);
+
+        const minutes = Math.floor((difference / 60000) % 60);
+
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        document.getElementById("countdown").textContent =
+
+        currentLanguage === "ar"
+
+        ? `باقي ${days} يوم و ${hours} ساعة و ${minutes} دقيقة و ${seconds} ثانية`
+
+        : `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`;
+
+        }
+
+        function startGame() {
+
+        score = 0;
+
+        document.getElementById("score").textContent = score;
+
+        document.getElementById("flag").style.display = "block";
+
+        moveFlag();
+
+        clearTimeout(gameTimer);
+
+        gameTimer = setTimeout(function() {
+
+        document.getElementById("flag").style.display = "none";
+
+        alert(currentLanguage === "ar"
+
+        ? "انتهت اللعبة! نتيجتك هي: " + score
+
+        : "Game over! Your score is: " + score);
+
+        }, 20000);
+
+        }
+
+        function clickFlag() {
+
+        score++;
+
+        document.getElementById("score").textContent = score;
+
+        moveFlag();
+
+        }
+
+        function moveFlag() {
+
+        const gameArea = document.getElementById("gameArea");
+
+        const flag = document.getElementById("flag");
+
+        const maxX = Math.max(0, gameArea.clientWidth - flag.offsetWidth);
+
+        const maxY = Math.max(0, gameArea.clientHeight - flag.offsetHeight);
+
+        flag.style.left = Math.random() * maxX + "px";
+
+        flag.style.top = Math.random() * maxY + "px";
+
+        }
+
+        window.addEventListener("load", function() {
+
+        fireworks();
+
+        countdown();
+
+        setInterval(countdown, 1000);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
